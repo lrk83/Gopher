@@ -1,0 +1,171 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: White;
+    --secondary-color: #024e76;
+    --tertiary-color: #87CEFA;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    color: var(--tertiary-color);
+    font-family: Helvetica, Arial, sans-serif;
+}
+/* apply styles to <header> */
+header {
+    background-color: var(--tertiary-color);
+    padding: 20px 35px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 36px;
+    color: Black;
+    margin: 0;
+}
+
+header a {
+    text-decoration: none;
+    color: Black;
+}
+
+header nav {
+    margin: 7px 0;
+}
+
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+}
+
+header nav ul li a {
+    padding: 10px 15px;
+    font-weight: lighter;
+    font-size: 1.5vw;
+}
+
+header nav ul li a:hover{
+    background: var(--primary-color);
+    color: var(secondary-color);
+    border-radius: 15px;
+}
+
+.row{
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    margin: 10px;
+    justify-content: space-between;
+}
+
+
+.column{
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    height: 100%;
+    align-items: flex-start;
+}
+
+.col-4{
+    max-width: 33%;
+    flex: 0 0 33%;
+}
+
+.col-8{
+    max-width: 66%;
+    flex: 0 0 66%;
+}
+
+.col-6{
+    max-width: 55%;
+    flex: 0 0 55%;
+}
+
+.card{
+    border: 1px solid rgba(0,0,0,.5);
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.card-header{
+    color: black;
+    font-size: 1.5;
+    margin: 5px 5px 10px 5px;
+    width: 100%;
+}
+
+.card-body{
+    width: 100%;
+}
+
+#date-form{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.inputBox{
+    width: 100%;
+}
+
+input{
+    width: 100%;
+    padding: 6px;
+    margin: 0 0 10px 0;
+}
+
+.btn{
+    width: 100%;
+    padding: 5px;
+    background-color: var(--tertiary-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.searchCard{
+    max-width: 60%;
+    flex: 0 0 60%;
+    border-radius: 7+px;
+    margin-right: 15px;
+}
+
+.btn:hover{
+    background: var(--primary-color);
+    color: var(secondary-color);
+    border-radius: 15px;
+}
+
+#dateCard{
+    max-width: 40%;
+    flex: 0 0 40%; 
+}
+
+.container{
+    padding: 2px;
+    display: flex;
+}

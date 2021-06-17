@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/CSS/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>
+            <a href="/">Gopher.</a>
+        </h1>
+        <nav>
+            <!-- Unordered list element-->
+            <ul>
+                <!--List item element-->
+                <li>
+                    <!--Anchor element-->
+                    <a href="#what-we-do">What We Do</a>
+                </li>
+                <li>
+                    <a href="#what-you-do">Connect</a>
+                </li>
+                <li>
+                    <a href="#your-trainers">Profile</a>
+                </li>
+                <li>
+                    <a href="#reach-out">Sign Up</a>
+                </li>
+            </ul>
+        </nav>
+        </header>
+    <div class="container">
+        <div class="row">
+            <div class="column col-6">
+                <div class="card searchCard" id="dateCard">
+                    <div class="card-header"><h3>What Should I Do Today?</h3></div>
+                    <div class="card-body">
+                        <form id="date-form">
+                            <div class="inputBox">
+                            <input type="text" name="date" placeholder="Enter Today's Date as YYYY-MM-DD" />
+                            <input type="text" name="state" placeholder="Enter Your state code" />
+                            </div>
+                            <button class="btn" id="submitDateState" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="searchCard" id="activityCard">
+                </div>
+            </div>
+            <div class="column col-6">
+                <div id="resultsCard">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/JS/script.js"></script>
+</body>
+</html>
