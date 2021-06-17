@@ -74,9 +74,8 @@ header nav ul li a:hover{
 
 .row{
     display: flex;
-    padding: 10px;
     width: 100%;
-    margin: 10px;
+    flex: 100%;
     justify-content: space-between;
 }
 
@@ -90,12 +89,12 @@ header nav ul li a:hover{
 }
 
 .col-4{
-    max-width: 33%;
+    width: 33%;
     flex: 0 0 33%;
 }
 
 .col-8{
-    max-width: 66%;
+    width: 66%;
     flex: 0 0 66%;
 }
 
@@ -104,11 +103,17 @@ header nav ul li a:hover{
     flex: 0 0 55%;
 }
 
+.col-12{
+    width: 100%;
+    flex: 0 0 100%;
+}
+
 .card{
     border: 1px solid rgba(0,0,0,.5);
     display: flex;
     flex-wrap: wrap;
     padding: 15px;
+    flex:0 0 100%;
 }
 
 .card-header{
@@ -168,4 +173,28 @@ input{
 .container{
     padding: 2px;
     display: flex;
+    flex-wrap: wrap;
+}
+
+.card-body .row{
+    margin: 10px 0px 10px 0px;
+    width: 100%;
+}
+
+#eventInfo .card{
+    max-width: 100%;
+    flex: 100%;
+}
+
+#eventInfo .col-4{
+    justify-content: center;
+}
+
+img {
+    width: 100%;
+}
+
+#resultsCard{
+    max-width: 100%;
+    flex: 100%;
 }
