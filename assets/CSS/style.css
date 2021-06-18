@@ -198,3 +198,7 @@ img {
     max-width: 100%;
     flex: 100%;
 }
+
+iframe{
+    margin: 20px;
+}
