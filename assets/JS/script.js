@@ -5,6 +5,7 @@ var activityCardEl = document.querySelector("#activityCard");
 var resultsCardEl = document.querySelector('#resultsCard');
 var nameOfEvent = document.querySelector("#nameOfEvent");
 var eventInfoEl = document.querySelector("#eventInfo");
+var iframe = document.querySelector("#iframe");
 
 //Varaibles for links
 var baseLink = "https://app.ticketmaster.com/discovery/v2/events.json";
@@ -15,9 +16,29 @@ var globalDateInput = "";
 var stateCode="";
 var eventsInfo=[];
 
+var getDirections = function(venue){
+    venueName="";
+    venue.split(" ").forEach((element) => {
+        venueName+=element;
+        venueName+="+";
+    });
+
+    console.log(venueName);
+
+    var googleMapsIFrame = document.createElement("iframe");
+    googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
+    googleMapsIFrame.setAttribute("width","600");
+    googleMapsIFrame.setAttribute("height","450");
+    googleMapsIFrame.setAttribute("style","border: 0");
+    googleMapsIFrame.setAttribute("loading","lazy");
+    iframe.appendChild(googleMapsIFrame);
+};
+
 var displayEventInfo = function(data){
     nameOfEvent.textContent=data._embedded.events[0]._embedded.attractions[0].name;
 
+    console.log(data._embedded.events[0]);
+    getDirections(data._embedded.events[0]._embedded.venues[0].name);
     eventInfoEl.innerHTML="";
 
     for (x=0;x<data._embedded.events.length;x++){
@@ -25,7 +46,7 @@ var displayEventInfo = function(data){
         newEventInfoEl.setAttribute("class","row");
         newEventInfoEl.innerHTML='<div class="card searchCard"><div class="column col-6"><div class="card-header"><h4>'+data._embedded.events[x].name+' ('+data._embedded.events[x].dates.start.localDate+')</h4></div><div class="card-body"><a href="'+data._embedded.events[x].url+'">'+data._embedded.events[x].url+'</a></div></div><div class="column col-4"><img src="'+data._embedded.events[x].images[x].url+'"></img></div></div>';
         eventInfoEl.appendChild(newEventInfoEl);
-    }
+    };
 };
 
 var getEventInfo = function(eventName){
@@ -179,4 +200,3 @@ $("#resultsCard").on("click","button",function(){
     var eventName=$(this).text();
     getEventInfo(eventName);
 })
-
