@@ -2,23 +2,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 :root {
     --primary-color: White;
     --secondary-color: #024e76;
-    --tertiary-color: #87CEFA;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --tertiary-color: rgb(39, 124, 130);
 }
 
 body {
     color: var(--tertiary-color);
     font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(236, 236, 236);
 }
 /* apply styles to <header> */
 header {
@@ -114,6 +110,7 @@ header nav ul li a:hover{
     flex-wrap: wrap;
     padding: 15px;
     flex:0 0 100%;
+    border-radius: 10px;
 }
 
 .card-header{
@@ -136,6 +133,7 @@ header nav ul li a:hover{
 
 .inputBox{
     width: 100%;
+    border-radius: 10px;
 }
 
 input{
@@ -150,6 +148,7 @@ input{
     background-color: var(--tertiary-color);
     border-radius: 5px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .searchCard{
@@ -184,6 +183,13 @@ input{
 #eventInfo .card{
     max-width: 100%;
     flex: 100%;
+    justify-content: space-between;
+    background-color: var(--tertiary-color);
+}
+
+#eventInfo .card h4 {
+    font-weight: bold;
+    font-size: x-large;
 }
 
 #eventInfo .col-4{
