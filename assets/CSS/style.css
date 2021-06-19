@@ -62,7 +62,7 @@ header nav ul {
 
 header nav ul li a {
     padding: 10px 15px;
-    font-weight: lighter;
+    font-weight: bold;
     font-size: 1.5vw;
 }
 
@@ -201,4 +201,58 @@ img {
 
 iframe{
     margin: 20px;
+}
+
+.gopher-bio h2{
+    color: black;
+    text-align: center;
+    font-size: 45px;
+}
+
+.steps {
+    padding: 40px 35px;
+    justify-content: flex-end;
+    display: block;
+}
+
+.steps div {
+    margin-bottom: 80px;
+}
+
+.steps h2 {
+    font-size: 40px;
+}
+
+.steps h3 {
+    color: #024e76;
+    font-size: 46px;
+    margin-top: 0px;
+    
+}
+
+.steps p {
+    color: black;
+    font-size: 23px;
+    display: flex;
+   justify-content: center;
+  
+}
+
+.steps span {
+    font-size: 38px;
+}
+
+
+
+.section-title {
+  font-size: 55px;
+  color: black;
+  padding-bottom: 20px;
+  text-align: center;
+  margin: 0 auto 35px auto;
+  }
+
+
+.flex-row {
+    display: flex;
 }
