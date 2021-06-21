@@ -2,23 +2,19 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 :root {
     --primary-color: White;
     --secondary-color: #024e76;
-    --tertiary-color: #87CEFA;
-}
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    --tertiary-color: rgb(39, 124, 130);
 }
 
 body {
     color: var(--tertiary-color);
     font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(1, 30, 75);
 }
 /* apply styles to <header> */
 header {
@@ -39,13 +35,13 @@ header {
 header h1 {
     font-weight: bold;
     font-size: 36px;
-    color: Black;
+    color: rgb(1, 30, 75);
     margin: 0;
 }
 
 header a {
     text-decoration: none;
-    color: Black;
+    color: rgb(1, 30, 75);
 }
 
 header nav {
@@ -109,15 +105,16 @@ header nav ul li a:hover{
 }
 
 .card{
-    border: 1px solid rgba(0,0,0,.5);
+    border: none;
     display: flex;
     flex-wrap: wrap;
     padding: 15px;
     flex:0 0 100%;
+    border-radius: 10px;
 }
 
 .card-header{
-    color: black;
+    color: white;
     font-size: 1.5;
     margin: 5px 5px 10px 5px;
     width: 100%;
@@ -136,12 +133,14 @@ header nav ul li a:hover{
 
 .inputBox{
     width: 100%;
+    border-radius: 10px;
 }
 
 input{
     width: 100%;
     padding: 6px;
     margin: 0 0 10px 0;
+    border-radius: 10px;
 }
 
 .btn{
@@ -150,6 +149,7 @@ input{
     background-color: var(--tertiary-color);
     border-radius: 5px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .searchCard{
@@ -171,6 +171,9 @@ input{
 }
 
 .container{
+    background-image: url(../images/social-event-2.jpg);
+    background-size: cover;
+    background-position: 80%;
     padding: 2px;
     display: flex;
     flex-wrap: wrap;
@@ -184,6 +187,13 @@ input{
 #eventInfo .card{
     max-width: 100%;
     flex: 100%;
+    justify-content: space-between;
+    background-color: var(--tertiary-color);
+}
+
+#eventInfo .card h4 {
+    font-weight: bold;
+    font-size: x-large;
 }
 
 #eventInfo .col-4{
@@ -192,13 +202,16 @@ input{
 
 img {
     width: 100%;
+    border-radius: 10px;
+    box-shadow:0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 #resultsCard{
-    max-width: 100%;
+    max-width: 77%;
     flex: 100%;
 }
 
 iframe{
     margin: 20px;
+    border-radius: 10px;
 }
