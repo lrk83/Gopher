@@ -14,7 +14,7 @@
 body {
     color: var(--tertiary-color);
     font-family: Helvetica, Arial, sans-serif;
-    background-color: rgb(236, 236, 236);
+    background-color: rgb(1, 30, 75);
 }
 /* apply styles to <header> */
 header {
@@ -35,13 +35,13 @@ header {
 header h1 {
     font-weight: bold;
     font-size: 36px;
-    color: Black;
+    color: rgb(1, 30, 75);
     margin: 0;
 }
 
 header a {
     text-decoration: none;
-    color: Black;
+    color: rgb(1, 30, 75);
 }
 
 header nav {
@@ -105,7 +105,7 @@ header nav ul li a:hover{
 }
 
 .card{
-    border: 1px solid rgba(0,0,0,.5);
+    border: none;
     display: flex;
     flex-wrap: wrap;
     padding: 15px;
@@ -114,7 +114,7 @@ header nav ul li a:hover{
 }
 
 .card-header{
-    color: black;
+    color: white;
     font-size: 1.5;
     margin: 5px 5px 10px 5px;
     width: 100%;
@@ -140,6 +140,7 @@ input{
     width: 100%;
     padding: 6px;
     margin: 0 0 10px 0;
+    border-radius: 10px;
 }
 
 .btn{
@@ -170,6 +171,9 @@ input{
 }
 
 .container{
+    background-image: url(../images/social-event-2.jpg);
+    background-size: cover;
+    background-position: 80%;
     padding: 2px;
     display: flex;
     flex-wrap: wrap;
@@ -198,13 +202,16 @@ input{
 
 img {
     width: 100%;
+    border-radius: 10px;
+    box-shadow:0 5px 10px 0 rgba(0, 0, 0, 0.5);
 }
 
 #resultsCard{
-    max-width: 100%;
+    max-width: 77%;
     flex: 100%;
 }
 
 iframe{
     margin: 20px;
+    border-radius: 10px;
 }
