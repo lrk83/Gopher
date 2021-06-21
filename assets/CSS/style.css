@@ -187,17 +187,59 @@ input{
 #eventInfo .card{
     max-width: 100%;
     flex: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: var(--tertiary-color);
+    padding-bottom: 30px;
+}
+
+#eventInfo .col-6{
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: rgb(220,220,220);
+    border-radius: 5px;
+}
+
+#eventInfo h4 {
+    color: var(--secondary-color);
+    width: 100%;
+    flex: 100%;
+    margin-bottom: 10px;
 }
 
 #eventInfo .card h4 {
     font-weight: bold;
     font-size: x-large;
+    text-align: center;
+    padding-top: 10px;
 }
 
 #eventInfo .col-4{
     justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
+
+#eventInfo .card-body{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+#eventInfo a{
+    background-color: var(--tertiary-color);
+    color: white;
+    width: 100%;
+    flex: 100%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#eventInfo a:hover{
+    background: var(--primary-color);
+    color: black;
+    border-radius: 15px;
 }
 
 img {
@@ -214,4 +256,11 @@ img {
 iframe{
     margin: 20px;
     border-radius: 10px;
+}
+
+h2{
+    text-align: center;
+    font-size: 2.5em;
+    padding: 10px;
+    border-radius: 5px;
 }

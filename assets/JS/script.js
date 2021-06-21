@@ -17,14 +17,25 @@ var stateCode="";
 var eventsInfo=[];
 
 var getDirections = function(venue){
+    //Check if venue includes & or ? 
+    venueNameEdited=""
+    for (x=0;x<venue.length;x++){
+        if(venue[x]!="&" && venue[x]!="?"){
+            venueNameEdited+=venue[x];
+        };
+    };
+
+    //Get and format the venue name
     venueName="";
-    venue.split(" ").forEach((element) => {
+    venueNameEdited.split(" ").forEach((element) => {
         venueName+=element;
         venueName+="+";
     });
 
     console.log(venueName);
 
+    //Make a map for the venue
+    iframe.innerHTML="";
     var googleMapsIFrame = document.createElement("iframe");
     googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
     googleMapsIFrame.setAttribute("width","600");
@@ -35,22 +46,68 @@ var getDirections = function(venue){
 };
 
 var displayEventInfo = function(data){
+    //Save artist/attraction name
     nameOfEvent.textContent=data._embedded.events[0]._embedded.attractions[0].name;
 
-    console.log(data._embedded.events[0]);
-    getDirections(data._embedded.events[0]._embedded.venues[0].name);
+    //getDirections(data._embedded.events[0]._embedded.venues[0].name);
     eventInfoEl.innerHTML="";
 
+    //Display the events
     for (x=0;x<data._embedded.events.length;x++){
         var newEventInfoEl = document.createElement("div");
         newEventInfoEl.setAttribute("class","row");
-        newEventInfoEl.innerHTML='<div class="card searchCard"><div class="column col-6"><div class="card-header"><h4>'+data._embedded.events[x].name+' ('+data._embedded.events[x].dates.start.localDate+')</h4></div><div class="card-body"><a href="'+data._embedded.events[x].url+'">'+data._embedded.events[x].url+'</a></div></div><div class="column col-4"><img src="'+data._embedded.events[x].images[x].url+'"></img></div></div>';
+
+        var newEventInfoCard = document.createElement("card");
+        newEventInfoCard.setAttribute("class","card searchCard");
+
+        var newEventInfoCardCol6=document.createElement("div");
+        newEventInfoCardCol6.setAttribute("class","column col-6");
+
+        var newEventInfoCardHeader=document.createElement("div");
+        newEventInfoCardHeader.setAttribute("class","card-header");
+
+        var newEventInfoName=document.createElement('h4');
+        newEventInfoName.textContent=data._embedded.events[x].name+' ('+data._embedded.events[x].dates.start.localDate+')';
+        newEventInfoCardHeader.appendChild(newEventInfoName);
+
+        newEventInfoCardCol6.appendChild(newEventInfoCardHeader);
+
+        var newEVentInfoCardBody=document.createElement("div");
+        newEVentInfoCardBody.setAttribute("class","card-body");
+
+        var getTicketsButton = document.createElement("a");
+        getTicketsButton.setAttribute("class","getTickets");
+        getTicketsButton.setAttribute("href",data._embedded.events[x].url);
+        getTicketsButton.textContent="Get Tickets";
+
+        var getDirectionsButton = document.createElement("a");
+        getDirectionsButton.setAttribute("id",data._embedded.events[x]._embedded.venues[0].name);
+        getDirectionsButton.setAttribute("class","getDirections");
+        getDirectionsButton.setAttribute("href","#iframe");
+        getDirectionsButton.textContent="Get Directions";
+
+        newEVentInfoCardBody.appendChild(getTicketsButton);
+        newEVentInfoCardBody.appendChild(getDirectionsButton);
+
+        newEventInfoCardCol6.appendChild(newEVentInfoCardBody);
+
+        newEventInfoCard.appendChild(newEventInfoCardCol6);
+
+        var newEventInfoCardCol4=document.createElement("div");
+        newEventInfoCardCol4.setAttribute("class","column col-4");
+
+        var newEventInfoImage = document.createElement("img");
+        newEventInfoImage.setAttribute("src",data._embedded.events[x].images[x].url);
+        newEventInfoCardCol4.appendChild(newEventInfoImage);
+
+        newEventInfoCard.appendChild(newEventInfoCardCol4);
+        newEventInfoEl.appendChild(newEventInfoCard);
+
         eventInfoEl.appendChild(newEventInfoEl);
     };
 };
 
 var getEventInfo = function(eventName){
-    console.log(eventName);
 
     //search eventsInfo for this event
     for (x=0;x<eventsInfo.length;x++){
@@ -58,8 +115,6 @@ var getEventInfo = function(eventName){
             eventforDisplay=eventsInfo[x].attractionID;
         }
     }
-
-    console.log(eventforDisplay);
 
     //Get the info for all events for this attraction ID, in this state, past this date
     date = globalDateInput+"T00:00:01Z";
@@ -85,7 +140,6 @@ var displayEvents = function(data){
     var eventsDisplayed=[];
 
     for (x=0;x<data.length;x++){
-        console.log(data[x]);
 
         //By default the next one isn't in eventsDisplayed
         var imAlreadyInEventsDisplayed=false;
@@ -200,3 +254,8 @@ $("#resultsCard").on("click","button",function(){
     var eventName=$(this).text();
     getEventInfo(eventName);
 })
+
+$('#eventInfo').on("click",".getDirections",function(){
+    var venue =$(this)[0].attributes.id.nodeValue;
+    getDirections(venue);
+});
