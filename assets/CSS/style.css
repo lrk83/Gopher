@@ -8,7 +8,7 @@
 :root {
     --primary-color: White;
     --secondary-color: #024e76;
-    --tertiary-color: rgb(39, 124, 130);
+    --tertiary-color: rgb(48, 152, 160);
 }
 
 body {
@@ -144,6 +144,7 @@ header nav ul li a:hover{
     margin: 10px;
     height: 100%;
     align-items: flex-start;
+    max-width: 99%;
 }
 
 .col-4{
@@ -157,7 +158,7 @@ header nav ul li a:hover{
 }
 
 .col-6{
-    max-width: 55%;
+    max-width: 48%;
     flex: 0 0 55%;
 }
 
@@ -311,7 +312,7 @@ img {
 }
 
 #resultsCard{
-    max-width: 77%;
+    max-width: 100%;
     flex: 100%;
 }
 
