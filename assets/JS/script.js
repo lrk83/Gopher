@@ -223,9 +223,10 @@ var dateFormHandler = function(event){
     event.preventDefault();
 
     //Get date and state
-    var dateInput = document.querySelector("input[name='date']").value;
+    var dateInput = moment().format("YYYY-MM-DD")
     var stateInput = document.querySelector("input[name='state']").value
-
+    console.log(dateInput)
+    
     // check if inputs are empty (validate)
     if (!dateInput) {
         alert("You need to enter a date!");
@@ -259,3 +260,41 @@ $('#eventInfo').on("click",".getDirections",function(){
     var venue =$(this)[0].attributes.id.nodeValue;
     getDirections(venue);
 });
+
+const openModalButtons = document.querySelectorAll('[data-modal-target]');
+const closeModalButtons = document.querySelectorAll('[data-close-button]');
+const overlay = document.getElementById('overlay');
+
+openModalButtons.forEach(button => {
+    button.addEventListener('click', ()=> {
+      const modal = document.querySelector(button.CDATA_SECTION_NODE.modalTarget);
+      openModal(modal);
+    });
+});
+
+overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active');
+    modals.forEach(modal => {
+      closeModal(modal);
+    });
+
+});
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', ()=> {
+      const modal = button.closest('.modal');
+      closeModal(modal);
+    });
+});
+
+function openModal(modal) {
+    if (modal == null) return;
+    modal.classList.add('active');
+    overlay.classList.add('active');
+};
+
+function closeModal(modal) {
+    if (modal == null) return;
+    modal.classList.remove('active');
+    overlay.classList.remove('active');
+};
