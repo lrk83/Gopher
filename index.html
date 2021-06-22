@@ -18,8 +18,24 @@
                 <!--List item element-->
                 <li>
                     <!--Anchor element-->
-                    <a href="#what-we-do">What We Do</a>
+                    <a href="#why-gopher-it">Why Gopher It</a>
                 </li>
+                <button data-modal-target="modal">Why Gopher It</button>
+                <div class="modal" id="modal">
+                    <div class="modal-header">
+                        <div class="title">Why Gopher It</div>
+                        <button data-close-button class="close-button"&times;></button>
+
+                    </div>
+                    <div class="modal-body">
+                        What is and why should you Gopher? Gopher help take the guess work out of trying find something to do.
+                        This site help you and friends make plan easier and find fun events all can agree on.
+                        Why Gopher why not? Put in your state and pick an event you are in the mood for and let us do the rest.
+                        All that left is you to pick what catches your eye, Boom you have your day planned.
+                        There is a  Feeling Lucky option for those adventurous types. 
+                    </div>
+                </div>
+                <div  id="overlays"></div>
                 <li>
                     <a href="#what-you-do">Connect</a>
                 </li>
@@ -40,7 +56,7 @@
                     <div class="card-body">
                         <form id="date-form">
                             <div class="inputBox">
-                            <input type="text" name="date" placeholder="Enter Today's Date as YYYY-MM-DD" />
+                            
                             <input type="text" name="state" placeholder="Enter Your state code" />
                             </div>
                             <button class="btn" id="submitDateState" type="submit">Search</button>
@@ -74,8 +90,10 @@
     
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="assets/JS/script.js"></script>
+    
 </body>
 </html>
