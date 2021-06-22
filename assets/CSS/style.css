@@ -8,7 +8,7 @@
 :root {
     --primary-color: White;
     --secondary-color: #024e76;
-    --tertiary-color: rgb(39, 124, 130);
+    --tertiary-color: rgb(48, 152, 160);
 }
 
 body {
@@ -67,6 +67,68 @@ header nav ul li a:hover{
     color: var(secondary-color);
     border-radius: 15px;
 }
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate( -50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+.modal.active {
+    transform: translate( -50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px; 
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;  
+}
+
+
 
 .row{
     display: flex;
@@ -82,6 +144,7 @@ header nav ul li a:hover{
     margin: 10px;
     height: 100%;
     align-items: flex-start;
+    max-width: 99%;
 }
 
 .col-4{
@@ -95,7 +158,7 @@ header nav ul li a:hover{
 }
 
 .col-6{
-    max-width: 55%;
+    max-width: 48%;
     flex: 0 0 55%;
 }
 
@@ -187,17 +250,59 @@ input{
 #eventInfo .card{
     max-width: 100%;
     flex: 100%;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: var(--tertiary-color);
+    padding-bottom: 30px;
+}
+
+#eventInfo .col-6{
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: rgb(220,220,220);
+    border-radius: 5px;
+}
+
+#eventInfo h4 {
+    color: var(--secondary-color);
+    width: 100%;
+    flex: 100%;
+    margin-bottom: 10px;
 }
 
 #eventInfo .card h4 {
     font-weight: bold;
     font-size: x-large;
+    text-align: center;
+    padding-top: 10px;
 }
 
 #eventInfo .col-4{
     justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
+
+#eventInfo .card-body{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+#eventInfo a{
+    background-color: var(--tertiary-color);
+    color: white;
+    width: 100%;
+    flex: 100%;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+#eventInfo a:hover{
+    background: var(--primary-color);
+    color: black;
+    border-radius: 15px;
 }
 
 img {
@@ -207,11 +312,18 @@ img {
 }
 
 #resultsCard{
-    max-width: 77%;
+    max-width: 100%;
     flex: 100%;
 }
 
 iframe{
     margin: 20px;
     border-radius: 10px;
+}
+
+h2{
+    text-align: center;
+    font-size: 2.5em;
+    padding: 10px;
+    border-radius: 5px;
 }
