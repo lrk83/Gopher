@@ -261,40 +261,17 @@ $('#eventInfo').on("click",".getDirections",function(){
     getDirections(venue);
 });
 
-const openModalButtons = document.querySelectorAll('[data-modal-target]');
-const closeModalButtons = document.querySelectorAll('[data-close-button]');
-const overlay = document.getElementById('overlay');
 
-openModalButtons.forEach(button => {
-    button.addEventListener('click', ()=> {
-      const modal = document.querySelector(button.CDATA_SECTION_NODE.modalTarget);
-      openModal(modal);
-    });
-});
+//MODAL STUFF
 
-overlay.addEventListener('click', () => {
-    const modals = document.querySelectorAll('.modal.active');
-    modals.forEach(modal => {
-      closeModal(modal);
-    });
+var modalBtn = document.querySelector("#modalBtn");
+var modalBg = document.querySelector("#modalBG");
+var modalClose = document.querySelector(".modal-close");
 
-});
+modalBtn.addEventListener("click",function(){
+    modalBg.classList.add("bg-active");
+})
 
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', ()=> {
-      const modal = button.closest('.modal');
-      closeModal(modal);
-    });
-});
-
-function openModal(modal) {
-    if (modal == null) return;
-    modal.classList.add('active');
-    overlay.classList.add('active');
-};
-
-function closeModal(modal) {
-    if (modal == null) return;
-    modal.classList.remove('active');
-    overlay.classList.remove('active');
-};
+modalClose.addEventListener("click",function(){
+    modalBg.classList.remove("bg-active");
+})
