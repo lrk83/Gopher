@@ -19,7 +19,7 @@ body {
 /* apply styles to <header> */
 header {
     background-color: var(--tertiary-color);
-    padding: 20px 35px;
+    padding: 10px 35px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
