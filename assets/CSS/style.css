@@ -225,7 +225,7 @@ input{
     flex-wrap: wrap;
     align-content: flex-start;
     background-image: url(../images/blurred-background.jpg);
-    border-radius: 5px;
+    border-radius: 12px;
 }
 
 #eventInfo h4 {
