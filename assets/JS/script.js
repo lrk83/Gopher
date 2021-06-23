@@ -38,6 +38,9 @@ var getDirections = function(venue){
     //Make a map for the venue
     iframe.innerHTML="";
     var googleMapsIFrame = document.createElement("iframe");
+    var googleMapsHeader = document.createElement("h3");
+    googleMapsHeader.textContent="Gopher It.";
+    iframe.appendChild(googleMapsHeader);
     googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
     googleMapsIFrame.setAttribute("width","600");
     googleMapsIFrame.setAttribute("height","450");
