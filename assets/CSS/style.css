@@ -297,7 +297,7 @@ h2{
 
 #iframe h3 {
     font-size: 2rem;
-    margin-left: 20px;
+    margin-left: 35px;
     margin-top: 20px;
 }
 
@@ -361,4 +361,8 @@ h2{
 
 .modal-close:hover{
     background-color: var(--secondary-color)ß;
+}
+
+#modalBtn {
+    cursor: pointer;
 }
