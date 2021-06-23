@@ -270,6 +270,8 @@ input{
     background: var(--primary-color);
     color: black;
     border-radius: 15px;
+    padding: 25px 0 25px 0;
+    font-size: x-large;
 }
 
 img {
