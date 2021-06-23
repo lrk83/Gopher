@@ -6,6 +6,7 @@ var resultsCardEl = document.querySelector('#resultsCard');
 var nameOfEvent = document.querySelector("#nameOfEvent");
 var eventInfoEl = document.querySelector("#eventInfo");
 var iframe = document.querySelector("#iframe");
+var adressFrame = document.querySelector("#adressFrame");
 
 //Varaibles for links
 var baseLink = "https://app.ticketmaster.com/discovery/v2/events.json";
@@ -15,8 +16,10 @@ var apiKey = "&apikey=T95dZRPqdgVYqRDHuXUKuK8DTaYIgRoR";
 var globalDateInput = "";
 var stateCode="";
 var eventsInfo=[];
+var venuesInfo=[];
 
 var getDirections = function(venue){
+    
     //Check if venue includes & or ? 
     venueNameEdited=""
     for (x=0;x<venue.length;x++){
@@ -32,8 +35,6 @@ var getDirections = function(venue){
         venueName+="+";
     });
 
-    console.log(venueName);
-
     //Make a map for the venue
     iframe.innerHTML="";
     var googleMapsIFrame = document.createElement("iframe");
@@ -43,6 +44,51 @@ var getDirections = function(venue){
     googleMapsIFrame.setAttribute("style","border: 0");
     googleMapsIFrame.setAttribute("loading","lazy");
     iframe.appendChild(googleMapsIFrame);
+
+    
+
+    //Make a box for the address
+    for (x=0;x<venuesInfo.length;x++){
+        if (venuesInfo[x].name===venue){
+            console.log(venuesInfo[x]);
+
+            var newAdressRow1 = document.createElement("div");
+            newAdressRow1.setAttribute("class","row");
+
+            var newAdressName = document.createElement("h4");
+            newAdressName.textContent = venuesInfo[x].name
+            newAdressRow1.appendChild(newAdressName);
+
+            var newAdressRow2 = document.createElement("div");
+            newAdressRow2.setAttribute("class","row");
+
+            var newAdress = document.createElement("p");
+            newAdress.textContent = venuesInfo[x].address
+            newAdressRow2.appendChild(newAdress);
+
+            var newAdressRow3 = document.createElement("div");
+            newAdressRow3.setAttribute("class","row");
+
+            var newAdressState = document.createElement("p");
+            newAdressState.textContent = venuesInfo[x].city+", "+venuesInfo[x].state;
+            newAdressRow3.appendChild(newAdressState);
+
+            var newAdressRow4 = document.createElement("div");
+            newAdressRow4.setAttribute("class","row");
+
+            var newAdressZip = document.createElement("p");
+            newAdressZip.textContent = venuesInfo[x].zipCode
+            newAdressRow4.appendChild(newAdressZip);
+
+            adressFrame.appendChild(newAdressRow1);
+            adressFrame.appendChild(newAdressRow2);
+            adressFrame.appendChild(newAdressRow3);
+            adressFrame.appendChild(newAdressRow4);
+            adressFrame.setAttribute("class","column col-6 white");
+        };
+    };
+
+    
 };
 
 var displayEventInfo = function(data){
@@ -82,6 +128,16 @@ var displayEventInfo = function(data){
 
         var getDirectionsButton = document.createElement("a");
         getDirectionsButton.setAttribute("id",data._embedded.events[x]._embedded.venues[0].name);
+
+        var newVenueInfo = {
+            name: data._embedded.events[x]._embedded.venues[0].name,
+            address: data._embedded.events[x]._embedded.venues[0].address.line1,
+            city: data._embedded.events[x]._embedded.venues[0].city.name,
+            zipCode: data._embedded.events[x]._embedded.venues[0].postalCode,
+            state: data._embedded.events[x]._embedded.venues[0].state.name
+        };
+        venuesInfo.push(newVenueInfo);
+        
         getDirectionsButton.setAttribute("class","getDirections");
         getDirectionsButton.setAttribute("href","#iframe");
         getDirectionsButton.textContent="Get Directions";
@@ -148,7 +204,6 @@ var displayEvents = function(data,activityType){
         //Save it to eventsDisplayed
         eventsDisplayed.push(data[0].name);
 
-        console.log(data[0]);
         //Save its info to eventsInfo
         var eventInfo={
             name: data[0].name,
@@ -181,7 +236,6 @@ var displayEvents = function(data,activityType){
                     //Save it to eventsDisplayed
                     eventsDisplayed.push(data[x].name);
 
-                    console.log(data[x]);
                     //Save its info to eventsInfo
                     var eventInfo={
                         name: data[x].name,
@@ -246,7 +300,6 @@ var dateFormHandler = function(event){
     //Get date and state
     var dateInput = moment().format("YYYY-MM-DD")
     var stateInput = document.querySelector("input[name='state']").value
-    console.log(dateInput)
     
     // check if inputs are empty (validate)
     if (!dateInput) {

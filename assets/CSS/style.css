@@ -355,5 +355,48 @@ h2{
 }
 
 .modal-close:hover{
-    background-color: var(--secondary-color)ß;
+    background-color: var(--secondary-color);
+}
+
+.iframe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#adressFrame{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#adressFrame .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    padding: 2px;
+}
+
+.white{
+    background-color: white;
+}
+
+#adressFrame h4{
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+#frameRow{
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
 }
