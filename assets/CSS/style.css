@@ -58,6 +58,8 @@ header a {
 
 header nav {
     margin: 7px 0;
+    align-items: center;
+    display: flex;
 }
 
 header nav ul {

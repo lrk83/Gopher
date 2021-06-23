@@ -128,7 +128,7 @@ var getEventInfo = function(eventName){
 };
 
 
-var displayEvents = function(data){
+var displayEvents = function(data,activityType){
     //Reset list of events
     resultsCardEl.innerHTML="";
 
@@ -139,39 +139,60 @@ var displayEvents = function(data){
     //List of buttons already displayed
     var eventsDisplayed=[];
 
-    for (x=0;x<data.length;x++){
+    if (activityType==="miscellaneous"){
+        var newEventButton=document.createElement("button");
+        newEventButton.textContent=data[0].name;
+        newEventButton.setAttribute("class","btn");
+        resultsCardEl.appendChild(newEventButton);
 
-        //By default the next one isn't in eventsDisplayed
-        var imAlreadyInEventsDisplayed=false;
+        //Save it to eventsDisplayed
+        eventsDisplayed.push(data[0].name);
 
-        //Check if the next event name is already in eventsDisplayed
-        for (y=0;y<eventsDisplayed.length;y++){
-            if (eventsDisplayed[y]===data[x].name){
-                imAlreadyInEventsDisplayed=true;
-            };
+        console.log(data[0]);
+        //Save its info to eventsInfo
+        var eventInfo={
+            name: data[0].name,
+            attractionID: data[0]._embedded.attractions[0].id
         };
 
-        //If the next event name is not already in events Displayed,
-        if (imAlreadyInEventsDisplayed===false){
+        eventsInfo.push(eventInfo);
+    }else{
+        for (x=0;x<data.length;x++){
 
-            //Display it
-            var newEventButton=document.createElement("button");
-            newEventButton.textContent=data[x].name;
-            newEventButton.setAttribute("class","btn");
-            resultsCardEl.appendChild(newEventButton);
+            //By default the next one isn't in eventsDisplayed
+            var imAlreadyInEventsDisplayed=false;
 
-            //Save it to eventsDisplayed
-            eventsDisplayed.push(data[x].name);
-
-            //Save its info to eventsInfo
-            var eventInfo={
-                name: data[x].name,
-                attractionID: data[x]._embedded.attractions[0].id
+            //Check if the next event name is already in eventsDisplayed
+            for (y=0;y<eventsDisplayed.length;y++){
+                if (eventsDisplayed[y]===data[x].name){
+                    imAlreadyInEventsDisplayed=true;
+                };
             };
 
-            eventsInfo.push(eventInfo);
+            //If the next event name is not already in events Displayed,
+            if (imAlreadyInEventsDisplayed===false){
+                if (data[x]._embedded.attractions[0].id!=null){
+                    //Display it
+                    var newEventButton=document.createElement("button");
+                    newEventButton.textContent=data[x].name;
+                    newEventButton.setAttribute("class","btn");
+                    resultsCardEl.appendChild(newEventButton);
+
+                    //Save it to eventsDisplayed
+                    eventsDisplayed.push(data[x].name);
+
+                    console.log(data[x]);
+                    //Save its info to eventsInfo
+                    var eventInfo={
+                        name: data[x].name,
+                        attractionID: data[x]._embedded.attractions[0].id
+                    };
+
+                    eventsInfo.push(eventInfo);
+                }
+            };
         };
-    };
+    }
 
     resultsCardEl.innerHTML=resultsCardEl.innerHTML+'</div>';
 };
@@ -182,7 +203,7 @@ var getEventsList=function(activityType){
         if (response.ok){
             response.json().then(function(data){
 
-                displayEvents(data._embedded.events);
+                displayEvents(data._embedded.events,activityType);
             });
         }else{
             window.alert("There was a problem with your request!");
@@ -270,8 +291,8 @@ var modalClose = document.querySelector(".modal-close");
 
 modalBtn.addEventListener("click",function(){
     modalBg.classList.add("bg-active");
-})
+});
 
 modalClose.addEventListener("click",function(){
     modalBg.classList.remove("bg-active");
-})
+});
