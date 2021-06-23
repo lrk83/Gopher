@@ -39,9 +39,10 @@ header {
 }
 
 header img{
-    margin-left: 20px;
-    width: 80px;
-    height: 80px;
+    margin-left: 5px;
+    width: 40px;
+    height: 60px;
+    box-shadow: none;
 }
 
 header h1 {
@@ -223,12 +224,12 @@ input{
 #eventInfo .col-6{
     flex-wrap: wrap;
     align-content: flex-start;
-    background-color: rgb(220,220,220);
+    background-image: url(../images/blurred-background.jpg);
     border-radius: 5px;
 }
 
 #eventInfo h4 {
-    color: var(--secondary-color);
+    color: white;
     width: 100%;
     flex: 100%;
     margin-bottom: 10px;
@@ -262,6 +263,7 @@ input{
     margin: 10px;
     border-radius: 5px;
     text-align: center;
+    text-decoration: none;
 }
 
 #eventInfo a:hover{
@@ -293,6 +295,11 @@ h2{
     border-radius: 5px;
 }
 
+#iframe h3 {
+    font-size: 2rem;
+    margin-left: 20px;
+    margin-top: 20px;
+}
 
 
 
