@@ -20,40 +20,43 @@ var venuesInfo=[];
 
 var getDirections = function(venue){
     
-    //Check if venue includes & or ? 
-    venueNameEdited=""
-    for (x=0;x<venue.length;x++){
-        if(venue[x]!="&" && venue[x]!="?"){
-            venueNameEdited+=venue[x];
-        };
-    };
+    //Check if venue includes & or ?
 
-    //Get and format the venue name
-    venueName="";
-    venueNameEdited.split(" ").forEach((element) => {
-        venueName+=element;
-        venueName+="+";
-    });
-
-    //Make a map for the venue
-    iframe.innerHTML="";
-    var googleMapsIFrame = document.createElement("iframe");
-    var googleMapsHeader = document.createElement("h3");
-    googleMapsHeader.textContent="Gopher It.";
-    iframe.appendChild(googleMapsHeader);
-    googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
-    googleMapsIFrame.setAttribute("width","600");
-    googleMapsIFrame.setAttribute("height","450");
-    googleMapsIFrame.setAttribute("style","border: 0");
-    googleMapsIFrame.setAttribute("loading","lazy");
-    iframe.appendChild(googleMapsIFrame);
-
-    
-
-    //Make a box for the address
+    venueForLoop="";
     for (x=0;x<venuesInfo.length;x++){
-        if (venuesInfo[x].name===venue){
-            console.log(venuesInfo[x]);
+        if (venuesInfo[x].name===venue && venuesInfo[x].name!=venueForLoop){
+            venueForLoop=venuesInfo[x].name;
+
+            venueNameEdited="";
+            for (y=0;y<venuesInfo[x].name.length;y++){
+                if(venuesInfo[x].name[y]!="&" && venuesInfo[x].name[y]!="?"){
+                    venueNameEdited+=venuesInfo[x].name[y];
+                };
+            };
+
+            console.log(venuesInfo[x].name);
+
+            //Get and format the venue name
+            venueName="";
+            venueNameEdited.split(" ").forEach((element) => {
+                venueName+=element;
+                venueName+="+";
+            });
+
+            //Make a map for the venue
+            iframe.innerHTML="";
+            var googleMapsIFrame = document.createElement("iframe");
+            var googleMapsHeader = document.createElement("h3");
+            googleMapsHeader.textContent="Gopher It.";
+            iframe.appendChild(googleMapsHeader);
+            googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
+            googleMapsIFrame.setAttribute("width","600");
+            googleMapsIFrame.setAttribute("height","450");
+            googleMapsIFrame.setAttribute("style","border: 0");
+            googleMapsIFrame.setAttribute("loading","lazy");
+            iframe.appendChild(googleMapsIFrame);
+
+            adressFrame.innerHTML="";
 
             var newAdressRow1 = document.createElement("div");
             newAdressRow1.setAttribute("class","row");
@@ -90,8 +93,6 @@ var getDirections = function(venue){
             adressFrame.setAttribute("class","column col-6 white");
         };
     };
-
-    
 };
 
 var displayEventInfo = function(data){
