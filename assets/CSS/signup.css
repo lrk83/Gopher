@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+:root {
+    --primary-color: White;
+    --secondary-color: #024e76;
+    --tertiary-color: rgb(48, 152, 160);
+}
+
+body {
+    color: var(--tertiary-color);
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: rgb(1, 30, 75);
+}
+/* apply styles to <header> */
+header {
+    background-color: var(--tertiary-color);
+    padding: 10px 35px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-position: 80%;
+}
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img{
+    margin-left: 5px;
+    width: 40px;
+    height: 60px;
+    box-shadow: none;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 36px;
+    color: rgb(1, 30, 75);
+    margin: 0;
+}
+
+header a {
+    text-decoration: none;
+    color: rgb(1, 30, 75);
+}
+
+
+.gopher{
+    background-image: url(../images/social-event-2.jpg);
+    height: 600px;
+    background-size: cover;/*property can set the size of the background image to its original size or make it stretched, repeated, or constrained to fit the available space. In this case, we'll set it to cover to shrink the image so that parts of it won't get clipped*/
+    background-position: center;/* cans et the initial position of the bckground img.*/
+    position: relative;/*inorder to move the hero-form box up we had to put it was relative*/
+}
+
+.gopher  {
+     
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+ }
+/* Hero Style Ended */
+
+.gopher-form {
+   background-color:rgb(48, 152, 160);
+   padding: 20px;
+   color: #024e76;
+   width: 40%;
+   margin: 8.5%;
+   border-radius: 10px;
+   }
+
+
+.gopher-form h3 {
+   font-size: 24px;
+   margin: 0;
+   color: black;
+}
+
+.gopher-form p {
+   margin: 5px 0 15px 0;
+   color: black;
+
+}
+
+.gopher-cta {
+   width: 35%;
+   text-align: right;
+   margin: 3.5%;
+   color: #fff;
+   font-size: 18px;
+   line-height: 1.3;
+}
+
+.gopher-cta h2{
+   font-style: italic;
+   font-size: 55px;
+   color: #fce138;
+}
+
+
+.form-input {
+   border: 1px solid #024e76;
+   display: block;
+   padding: 7px 15px;
+   font-size: 16px;
+   color: #024e76;
+   width: 100%;
+   margin-bottom: 15px;
+}
+
+.gopher-form label {
+   margin: 0 5px;
+   color: black;
+ }
+
+
+.gopher-form button {
+    color: #a7a38b;
+    background-color: #024e76;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+.logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+

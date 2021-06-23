@@ -19,7 +19,7 @@ body {
 /* apply styles to <header> */
 header {
     background-color: var(--tertiary-color);
-    padding: 20px 35px;
+    padding: 10px 35px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -39,9 +39,10 @@ header {
 }
 
 header img{
-    margin-left: 20px;
-    width: 80px;
-    height: 80px;
+    margin-left: 5px;
+    width: 40px;
+    height: 60px;
+    box-shadow: none;
 }
 
 header h1 {
@@ -58,6 +59,8 @@ header a {
 
 header nav {
     margin: 7px 0;
+    align-items: center;
+    display: flex;
 }
 
 header nav ul {
@@ -223,12 +226,12 @@ input{
 #eventInfo .col-6{
     flex-wrap: wrap;
     align-content: flex-start;
-    background-color: rgb(220,220,220);
-    border-radius: 5px;
+    background-image: url(../images/blurred-background.jpg);
+    border-radius: 12px;
 }
 
 #eventInfo h4 {
-    color: var(--secondary-color);
+    color: white;
     width: 100%;
     flex: 100%;
     margin-bottom: 10px;
@@ -262,12 +265,15 @@ input{
     margin: 10px;
     border-radius: 5px;
     text-align: center;
+    text-decoration: none;
 }
 
 #eventInfo a:hover{
     background: var(--primary-color);
     color: black;
     border-radius: 15px;
+    padding: 25px 0 25px 0;
+    font-size: x-large;
 }
 
 img {
@@ -293,6 +299,11 @@ h2{
     border-radius: 5px;
 }
 
+#iframe h3 {
+    font-size: 2rem;
+    margin-left: 35px;
+    margin-top: 20px;
+}
 
 
 
@@ -353,5 +364,56 @@ h2{
 }
 
 .modal-close:hover{
+    background-color: var(--secondary-color);
+}
+
+.iframe{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#adressFrame{
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 5px;
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#adressFrame .row{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    padding: 2px;
+}
+
+.white{
+    background-color: white;
+}
+
+#adressFrame h4{
+    font-weight: bold;
+    color: var(--secondary-color);
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+#frameRow{
+    align-content: center;
+    justify-content: center;
+    align-items: stretch;
     background-color: var(--secondary-color)ß;
 }
+
+#modalBtn {
+    cursor: pointer;
+}
+
+
+
