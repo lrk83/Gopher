@@ -7,6 +7,7 @@ var nameOfEvent = document.querySelector("#nameOfEvent");
 var eventInfoEl = document.querySelector("#eventInfo");
 var iframe = document.querySelector("#iframe");
 var adressFrame = document.querySelector("#adressFrame");
+var gopherIt = document.querySelector("#goPherIt");
 
 //Varaibles for links
 var baseLink = "https://app.ticketmaster.com/discovery/v2/events.json";
@@ -27,10 +28,12 @@ var getDirections = function(venue){
         if (venuesInfo[x].name===venue && venuesInfo[x].name!=venueForLoop){
             venueForLoop=venuesInfo[x].name;
 
+            venueNameCompiled=venuesInfo[x].name+venuesInfo[x].address+venuesInfo[x].city+venuesInfo[x].state;
+
             venueNameEdited="";
-            for (y=0;y<venuesInfo[x].name.length;y++){
-                if(venuesInfo[x].name[y]!="&" && venuesInfo[x].name[y]!="?"){
-                    venueNameEdited+=venuesInfo[x].name[y];
+            for (y=0;y<venueNameCompiled.length;y++){
+                if(venueNameCompiled[y]!="&" && venueNameCompiled[y]!="?"){
+                    venueNameEdited+=venueNameCompiled[y];
                 };
             };
 
@@ -46,9 +49,7 @@ var getDirections = function(venue){
             //Make a map for the venue
             iframe.innerHTML="";
             var googleMapsIFrame = document.createElement("iframe");
-            var googleMapsHeader = document.createElement("h3");
-            googleMapsHeader.textContent="Gopher It.";
-            iframe.appendChild(googleMapsHeader);
+            gopherIt.textContent="Gopher It.";
             googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
             googleMapsIFrame.setAttribute("width","600");
             googleMapsIFrame.setAttribute("height","450");
@@ -90,7 +91,7 @@ var getDirections = function(venue){
             adressFrame.appendChild(newAdressRow2);
             adressFrame.appendChild(newAdressRow3);
             adressFrame.appendChild(newAdressRow4);
-            adressFrame.setAttribute("class","column col-6 white");
+            adressFrame.setAttribute("class","white");
         };
     };
 };
@@ -98,6 +99,12 @@ var getDirections = function(venue){
 var displayEventInfo = function(data){
     //Save artist/attraction name
     nameOfEvent.textContent=data._embedded.events[0]._embedded.attractions[0].name;
+
+    if(window.matchMedia("screen and (max-width: 980px)").matches){
+        var newEventInfoImage = document.createElement("img");
+        newEventInfoImage.setAttribute("src",data._embedded.events[0].images[2].url);
+        nameOfEvent.appendChild(newEventInfoImage);
+        };
 
     //getDirections(data._embedded.events[0]._embedded.venues[0].name);
     eventInfoEl.innerHTML="";
@@ -156,9 +163,11 @@ var displayEventInfo = function(data){
         var newEventInfoCardCol4=document.createElement("div");
         newEventInfoCardCol4.setAttribute("class","column col-4");
 
+        if(!window.matchMedia("screen and (max-width: 980px)").matches){
         var newEventInfoImage = document.createElement("img");
         newEventInfoImage.setAttribute("src",data._embedded.events[x].images[x].url);
         newEventInfoCardCol4.appendChild(newEventInfoImage);
+        };
 
         newEventInfoCard.appendChild(newEventInfoCardCol4);
         newEventInfoEl.appendChild(newEventInfoCard);
