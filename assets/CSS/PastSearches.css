@@ -196,9 +196,27 @@ input{
     border-radius: 15px;
 }
 
+.pastsearchestitle{
+    color: var(--tertiary-color);
+}
+
 #dateCard{
     max-width: 40%;
     flex: 0 0 40%; 
+}
+
+#pastsearchesrow{
+    align-content: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+#pastsearchescard{
+    max-width: 70%;
+    width: 70%;
+    flex: 0 0 70%;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .container{
@@ -305,10 +323,6 @@ h2{
     margin-top: 20px;
 }
 
-#goPherIt h2 {
-    margin-top: 5px;
-}
-
 
 
 /*Modal stuff*/
@@ -355,26 +369,16 @@ h2{
     font-size: 1.5rem;
 }
 
-.modal-header h4 {
-    font-size: 30px;
-}
-
 .modal-body{
-    padding: 0 15px;
+    padding: 0 40px;
 }
 
-.modal-body p {
-    text-align: center;
-    padding: 10px;
-    font-size: 20px;
-}
 .modal-close{
     position: absolute;
     top: 10px;
     right: 10px;
     font-weight: bold;
     cursor: pointer;
-    font-size: x-large;
 }
 
 .modal-close:hover{
@@ -410,19 +414,14 @@ iframe{
 }
 
 .white{
-    background-image: url(../images/blurred-background.jpg);
-    border-radius: 10px;
+    background-color: white;
 }
 
 #adressFrame h4{
     font-weight: bold;
-    color: white;
+    color: var(--secondary-color);
     font-size: 2em;
     margin: 10px 0;
-}
-
-#adressFrame p {
-    font-size:1.3em;
 }
 
 #frameRow{
@@ -547,6 +546,8 @@ h5{
         background-color: var(--tertiary-color);
     }
 
+
+
     #resultsCard button{
         background-color: var(--secondary-color);
         color: white;
@@ -566,11 +567,20 @@ h5{
         padding-top: 0;
     }
 
-/* FOR TABLETS AND SMALLER */
-
-@media screen and (max-width: 768px){
     .modal-content{
         width: 60%;
     }
 
+
+
+}
+
+/* FOR TABLETS AND SMALLER */
+
+@media screen and (max-width: 768px){
+    .modal-content{
+        width: 90%;
+    }
+
+}
 
