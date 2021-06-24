@@ -367,22 +367,18 @@ h2{
     background-color: var(--secondary-color);
 }
 
-.iframe{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
 #adressFrame{
+    height: auto;
+    width: 100%;
+    flex: 100%;
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     border-radius: 5px;
-    margin-top: 40px;
-    padding: 20px;
+    margin: 20px;
     text-align: center;
     justify-content: center;
     align-items: center;
+    padding-bottom: 20px;
 }
 
 #adressFrame .row{
@@ -391,6 +387,12 @@ h2{
     align-items: center;
     margin: 2px;
     padding: 2px;
+}
+
+iframe{
+    height: auto;
+    min-height: 450px;
+    width: 100%;
 }
 
 .white{
@@ -405,12 +407,145 @@ h2{
 }
 
 #frameRow{
-    align-content: center;
     justify-content: center;
-    align-items: stretch;
-    background-color: var(--secondary-color)ß;
 }
 
 #modalBtn {
     cursor: pointer;
+}
+
+.noPhoto{
+    background-image: none;
+    padding-bottom: 50px;
+}
+
+/*Media Queries*/
+
+/* MEIDA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
+@media screen and (max-width: 980px){
+    header{
+        padding-bottom: 5px;
+        justify-content: center;
+        position: relative;
+    }
+
+    header h1 {
+        width: 100%;
+        text-align: center;
+    }
+
+    header nav ul {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-left: 20px;
+    }
+
+    header nav ul li button{
+        font-size: 1rem;
+    }
+
+    header nav ul li a{
+        font-size: 1rem;
+    }
+
+    .card-header{
+        text-align: center;
+    }
+
+    .row{
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+        padding-left: 10px;
+    }
+
+    .col-6{
+        max-width: 100%;
+        flex: 0 0 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .container{
+        height: auto;
+        background-image: none;
+        display: initial;
+    }
+
+    #dateCard{
+        width: 90%;
+        flex: 0 0 90%;
+        max-width: 100%;
+        background-color: var(--tertiary-color);
+    }
+
+    #dateCard button{
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 10px 0;
+        border-radius: 10px;
+    }
+
+   #activityCard{
+        margin-top: 10px;
+        width: 90%;
+        flex: 0 0 90%;
+        max-width: 100%;
+        background-color: var(--tertiary-color);
+    }
+
+    #activityCard button{
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 10px 0;
+        border-radius: 10px;
+    }
+
+    input{
+        border: none;
+        padding: 12px 0;
+    }
+
+    #resultsCard{
+        margin-top: 10px;
+        width: 90%;
+        flex: 0 0 90%;
+        max-width: 100%;
+        background-color: var(--tertiary-color);
+    }
+
+    #resultsCard button{
+        background-color: var(--secondary-color);
+        color: white;
+        border: none;
+        padding: 10px 0;
+        border-radius: 10px;
+    }
+
+    #nameOfEvent img{
+        margin-top: 15px;
+    }
+
+    #frameRow .col-6{
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
+}
+
+/* FOR TABLETS AND SMALLER */
+
+@media screen and (max-width: 768px){
+
+}
+
+/*FOR MOBILE PHONES AND SMALLER */
+
+@media screen and (max-width: 575px) {
+
 }
