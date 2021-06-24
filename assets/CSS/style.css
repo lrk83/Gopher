@@ -419,6 +419,16 @@ iframe{
     padding-bottom: 50px;
 }
 
+h5{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#connectModalBG p{
+    text-align: center;
+}
+
+
 /*Media Queries*/
 
 /* MEIDA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
@@ -536,17 +546,19 @@ iframe{
         padding-bottom: 0;
         padding-top: 0;
     }
+
+    .modal-content{
+        width: 60%;
+    }
+
 }
 
 /* FOR TABLETS AND SMALLER */
 
 @media screen and (max-width: 768px){
-
-}
-
-/*FOR MOBILE PHONES AND SMALLER */
-
-@media screen and (max-width: 575px) {
+    .modal-content{
+        width: 90%;
+    }
 
 }
 

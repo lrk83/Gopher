@@ -64,13 +64,9 @@ header a {
     background-size: cover;/*property can set the size of the background image to its original size or make it stretched, repeated, or constrained to fit the available space. In this case, we'll set it to cover to shrink the image so that parts of it won't get clipped*/
     background-position: center;/* cans et the initial position of the bckground img.*/
     position: relative;/*inorder to move the hero-form box up we had to put it was relative*/
-}
-
-.gopher  {
-     
     background-size: cover;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
  }
 /* Hero Style Ended */
@@ -143,5 +139,32 @@ header a {
     align-items: center;
 }
 
+/* Media Queries*/
 
+@media screen and (max-width: 768px){
+    *{
+        padding: 1px
+    }
+    
+    .gopher{
+        justify-content: center;
+    }
+    
+    .gopher-form{
+        width: 100%;
+    }
 
+    button{
+        width: 100%;
+    }
+
+    h3{
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #checkbox{
+        height: 15px;
+        width: 15px;
+    }
+}
