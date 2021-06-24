@@ -116,7 +116,9 @@ header a {
    font-size: 16px;
    color: #024e76;
    width: 100%;
-   margin-bottom: 15px;
+   padding: 6px;
+   margin: 0 0 10px 0;
+   border-radius: 10px;
 }
 
 .gopher-form label {
@@ -131,6 +133,15 @@ header a {
     border: none;
     padding: 10px 20px;
     font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.gopher-form button:hover {
+    background: var(--primary-color);
+    color: var(secondary-color);
+    border-radius: 15px;
 }
 
 .logo{

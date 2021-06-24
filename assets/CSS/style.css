@@ -305,6 +305,10 @@ h2{
     margin-top: 20px;
 }
 
+#goPherIt h2 {
+    margin-top: 5px;
+}
+
 
 
 /*Modal stuff*/
@@ -351,16 +355,26 @@ h2{
     font-size: 1.5rem;
 }
 
-.modal-body{
-    padding: 0 40px;
+.modal-header h4 {
+    font-size: 30px;
 }
 
+.modal-body{
+    padding: 0 15px;
+}
+
+.modal-body p {
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
 .modal-close{
     position: absolute;
     top: 10px;
     right: 10px;
     font-weight: bold;
     cursor: pointer;
+    font-size: x-large;
 }
 
 .modal-close:hover{
@@ -396,14 +410,19 @@ iframe{
 }
 
 .white{
-    background-color: white;
+    background-image: url(../images/blurred-background.jpg);
+    border-radius: 10px;
 }
 
 #adressFrame h4{
     font-weight: bold;
-    color: var(--secondary-color);
+    color: white;
     font-size: 2em;
     margin: 10px 0;
+}
+
+#adressFrame p {
+    font-size:1.3em;
 }
 
 #frameRow{
@@ -547,18 +566,11 @@ h5{
         padding-top: 0;
     }
 
-    .modal-content{
-        width: 60%;
-    }
-
-}
-
 /* FOR TABLETS AND SMALLER */
 
 @media screen and (max-width: 768px){
     .modal-content{
-        width: 90%;
+        width: 60%;
     }
 
-}
 
