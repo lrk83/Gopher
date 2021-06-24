@@ -196,9 +196,27 @@ input{
     border-radius: 15px;
 }
 
+.pastsearchestitle{
+    color: var(--tertiary-color);
+}
+
 #dateCard{
     max-width: 40%;
     flex: 0 0 40%; 
+}
+
+#pastsearchesrow{
+    align-content: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+#pastsearchescard{
+    max-width: 70%;
+    width: 70%;
+    flex: 0 0 70%;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .container{
@@ -528,6 +546,8 @@ h5{
         background-color: var(--tertiary-color);
     }
 
+
+
     #resultsCard button{
         background-color: var(--secondary-color);
         color: white;
@@ -550,6 +570,8 @@ h5{
     .modal-content{
         width: 60%;
     }
+
+
 
 }
 
