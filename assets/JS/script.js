@@ -279,6 +279,7 @@ var getActivities = function(){
 };
 
 var eventFormHandler = function(event){
+    
 
     event.preventDefault();
     
@@ -296,6 +297,7 @@ var eventFormHandler = function(event){
     }else if (targetEl===document.querySelector("#miscellaneous")){
         getEventsList("miscellaneous");
     }
+
 }
 
 var dateFormHandler = function(event){
@@ -353,3 +355,9 @@ modalBtn.addEventListener("click",function(){
 modalClose.addEventListener("click",function(){
     modalBg.classList.remove("bg-active");
 });
+
+
+
+// local storage 
+var tasks = [];
+
