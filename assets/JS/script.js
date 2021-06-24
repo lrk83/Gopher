@@ -6,6 +6,7 @@ var resultsCardEl = document.querySelector('#resultsCard');
 var nameOfEvent = document.querySelector("#nameOfEvent");
 var eventInfoEl = document.querySelector("#eventInfo");
 var iframe = document.querySelector("#iframe");
+var adressFrame = document.querySelector("#adressFrame");
 
 //Varaibles for links
 var baseLink = "https://app.ticketmaster.com/discovery/v2/events.json";
@@ -15,34 +16,83 @@ var apiKey = "&apikey=T95dZRPqdgVYqRDHuXUKuK8DTaYIgRoR";
 var globalDateInput = "";
 var stateCode="";
 var eventsInfo=[];
+var venuesInfo=[];
 
 var getDirections = function(venue){
-    //Check if venue includes & or ? 
-    venueNameEdited=""
-    for (x=0;x<venue.length;x++){
-        if(venue[x]!="&" && venue[x]!="?"){
-            venueNameEdited+=venue[x];
+    
+    //Check if venue includes & or ?
+
+    venueForLoop="";
+    for (x=0;x<venuesInfo.length;x++){
+        if (venuesInfo[x].name===venue && venuesInfo[x].name!=venueForLoop){
+            venueForLoop=venuesInfo[x].name;
+
+            venueNameEdited="";
+            for (y=0;y<venuesInfo[x].name.length;y++){
+                if(venuesInfo[x].name[y]!="&" && venuesInfo[x].name[y]!="?"){
+                    venueNameEdited+=venuesInfo[x].name[y];
+                };
+            };
+
+            console.log(venuesInfo[x].name);
+
+            //Get and format the venue name
+            venueName="";
+            venueNameEdited.split(" ").forEach((element) => {
+                venueName+=element;
+                venueName+="+";
+            });
+
+            //Make a map for the venue
+            iframe.innerHTML="";
+            var googleMapsIFrame = document.createElement("iframe");
+            var googleMapsHeader = document.createElement("h3");
+            googleMapsHeader.textContent="Gopher It.";
+            iframe.appendChild(googleMapsHeader);
+            googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
+            googleMapsIFrame.setAttribute("width","600");
+            googleMapsIFrame.setAttribute("height","450");
+            googleMapsIFrame.setAttribute("style","border: 0");
+            googleMapsIFrame.setAttribute("loading","lazy");
+            iframe.appendChild(googleMapsIFrame);
+
+            adressFrame.innerHTML="";
+
+            var newAdressRow1 = document.createElement("div");
+            newAdressRow1.setAttribute("class","row");
+
+            var newAdressName = document.createElement("h4");
+            newAdressName.textContent = venuesInfo[x].name
+            newAdressRow1.appendChild(newAdressName);
+
+            var newAdressRow2 = document.createElement("div");
+            newAdressRow2.setAttribute("class","row");
+
+            var newAdress = document.createElement("p");
+            newAdress.textContent = venuesInfo[x].address
+            newAdressRow2.appendChild(newAdress);
+
+            var newAdressRow3 = document.createElement("div");
+            newAdressRow3.setAttribute("class","row");
+
+            var newAdressState = document.createElement("p");
+            newAdressState.textContent = venuesInfo[x].city+", "+venuesInfo[x].state;
+            newAdressRow3.appendChild(newAdressState);
+
+            var newAdressRow4 = document.createElement("div");
+            newAdressRow4.setAttribute("class","row");
+
+            var newAdressZip = document.createElement("p");
+            newAdressZip.textContent = venuesInfo[x].zipCode
+            newAdressRow4.appendChild(newAdressZip);
+
+            adressFrame.appendChild(newAdressRow1);
+            adressFrame.appendChild(newAdressRow2);
+            adressFrame.appendChild(newAdressRow3);
+            adressFrame.appendChild(newAdressRow4);
+            adressFrame.setAttribute("class","column col-6 white");
         };
     };
-
-    //Get and format the venue name
-    venueName="";
-    venueNameEdited.split(" ").forEach((element) => {
-        venueName+=element;
-        venueName+="+";
-    });
-
-    console.log(venueName);
-
-    //Make a map for the venue
-    iframe.innerHTML="";
-    var googleMapsIFrame = document.createElement("iframe");
-    googleMapsIFrame.setAttribute("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyCNGVJ1YMzTfo0ANBH6sPMd9kmnZwqUh2o&q="+venueName);
-    googleMapsIFrame.setAttribute("width","600");
-    googleMapsIFrame.setAttribute("height","450");
-    googleMapsIFrame.setAttribute("style","border: 0");
-    googleMapsIFrame.setAttribute("loading","lazy");
-    iframe.appendChild(googleMapsIFrame);
 };
 
 var displayEventInfo = function(data){
@@ -82,6 +132,16 @@ var displayEventInfo = function(data){
 
         var getDirectionsButton = document.createElement("a");
         getDirectionsButton.setAttribute("id",data._embedded.events[x]._embedded.venues[0].name);
+
+        var newVenueInfo = {
+            name: data._embedded.events[x]._embedded.venues[0].name,
+            address: data._embedded.events[x]._embedded.venues[0].address.line1,
+            city: data._embedded.events[x]._embedded.venues[0].city.name,
+            zipCode: data._embedded.events[x]._embedded.venues[0].postalCode,
+            state: data._embedded.events[x]._embedded.venues[0].state.name
+        };
+        venuesInfo.push(newVenueInfo);
+        
         getDirectionsButton.setAttribute("class","getDirections");
         getDirectionsButton.setAttribute("href","#iframe");
         getDirectionsButton.textContent="Get Directions";
@@ -128,7 +188,7 @@ var getEventInfo = function(eventName){
 };
 
 
-var displayEvents = function(data){
+var displayEvents = function(data,activityType){
     //Reset list of events
     resultsCardEl.innerHTML="";
 
@@ -139,39 +199,58 @@ var displayEvents = function(data){
     //List of buttons already displayed
     var eventsDisplayed=[];
 
-    for (x=0;x<data.length;x++){
+    if (activityType==="miscellaneous"){
+        var newEventButton=document.createElement("button");
+        newEventButton.textContent=data[0].name;
+        newEventButton.setAttribute("class","btn");
+        resultsCardEl.appendChild(newEventButton);
 
-        //By default the next one isn't in eventsDisplayed
-        var imAlreadyInEventsDisplayed=false;
+        //Save it to eventsDisplayed
+        eventsDisplayed.push(data[0].name);
 
-        //Check if the next event name is already in eventsDisplayed
-        for (y=0;y<eventsDisplayed.length;y++){
-            if (eventsDisplayed[y]===data[x].name){
-                imAlreadyInEventsDisplayed=true;
-            };
+        //Save its info to eventsInfo
+        var eventInfo={
+            name: data[0].name,
+            attractionID: data[0]._embedded.attractions[0].id
         };
 
-        //If the next event name is not already in events Displayed,
-        if (imAlreadyInEventsDisplayed===false){
+        eventsInfo.push(eventInfo);
+    }else{
+        for (x=0;x<data.length;x++){
 
-            //Display it
-            var newEventButton=document.createElement("button");
-            newEventButton.textContent=data[x].name;
-            newEventButton.setAttribute("class","btn");
-            resultsCardEl.appendChild(newEventButton);
+            //By default the next one isn't in eventsDisplayed
+            var imAlreadyInEventsDisplayed=false;
 
-            //Save it to eventsDisplayed
-            eventsDisplayed.push(data[x].name);
-
-            //Save its info to eventsInfo
-            var eventInfo={
-                name: data[x].name,
-                attractionID: data[x]._embedded.attractions[0].id
+            //Check if the next event name is already in eventsDisplayed
+            for (y=0;y<eventsDisplayed.length;y++){
+                if (eventsDisplayed[y]===data[x].name){
+                    imAlreadyInEventsDisplayed=true;
+                };
             };
 
-            eventsInfo.push(eventInfo);
+            //If the next event name is not already in events Displayed,
+            if (imAlreadyInEventsDisplayed===false){
+                if (data[x]._embedded.attractions[0].id!=null){
+                    //Display it
+                    var newEventButton=document.createElement("button");
+                    newEventButton.textContent=data[x].name;
+                    newEventButton.setAttribute("class","btn");
+                    resultsCardEl.appendChild(newEventButton);
+
+                    //Save it to eventsDisplayed
+                    eventsDisplayed.push(data[x].name);
+
+                    //Save its info to eventsInfo
+                    var eventInfo={
+                        name: data[x].name,
+                        attractionID: data[x]._embedded.attractions[0].id
+                    };
+
+                    eventsInfo.push(eventInfo);
+                }
+            };
         };
-    };
+    }
 
     resultsCardEl.innerHTML=resultsCardEl.innerHTML+'</div>';
 };
@@ -182,7 +261,7 @@ var getEventsList=function(activityType){
         if (response.ok){
             response.json().then(function(data){
 
-                displayEvents(data._embedded.events);
+                displayEvents(data._embedded.events,activityType);
             });
         }else{
             window.alert("There was a problem with your request!");
@@ -227,7 +306,6 @@ var dateFormHandler = function(event){
     //Get date and state
     var dateInput = moment().format("YYYY-MM-DD")
     var stateInput = document.querySelector("input[name='state']").value
-    console.log(dateInput)
     
     // check if inputs are empty (validate)
     if (!dateInput) {
@@ -272,11 +350,11 @@ var modalClose = document.querySelector(".modal-close");
 
 modalBtn.addEventListener("click",function(){
     modalBg.classList.add("bg-active");
-})
+});
 
 modalClose.addEventListener("click",function(){
     modalBg.classList.remove("bg-active");
-})
+});
 
 
 
