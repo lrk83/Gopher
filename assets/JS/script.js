@@ -20,6 +20,7 @@ var eventsInfo=[];
 var venuesInfo=[];
 var searchedEvents=[];
 
+//Load events from local storage
 var loadEvents = function(){
     var savedEvents = localStorage.getItem("searchedEvents");
 
@@ -31,18 +32,19 @@ var loadEvents = function(){
         searchedEvents=JSON.parse(savedEvents);
 };
 
+//When page is first loaded, load local storgae
 loadEvents();
 
+//Save events to local storage
 var saveSearchedEvents = function(data){
     searchedEvents.push(data);
-    console.log(searchedEvents);
     localStorage.setItem("searchedEvents",JSON.stringify(searchedEvents));
 };
 
+//get Directions
 var getDirections = function(venue){
     
-    //Check if venue includes & or ?
-
+    //Remove all ? and & from venue name
     venueForLoop="";
     for (x=0;x<venuesInfo.length;x++){
         if (venuesInfo[x].name===venue && venuesInfo[x].name!=venueForLoop){
@@ -57,9 +59,7 @@ var getDirections = function(venue){
                 };
             };
 
-            console.log(venuesInfo[x].name);
-
-            //Get and format the venue name
+            //Remove all spaces from the venue name
             venueName="";
             venueNameEdited.split(" ").forEach((element) => {
                 venueName+=element;
@@ -79,6 +79,7 @@ var getDirections = function(venue){
 
             adressFrame.innerHTML="";
 
+            //Make an address card for the venue
             var newAdressRow1 = document.createElement("div");
             newAdressRow1.setAttribute("class","row");
 
@@ -116,6 +117,7 @@ var getDirections = function(venue){
     };
 };
 
+//Display all events for a given attraction
 var displayEventInfo = function(data){
     //Save artist/attraction name
     nameOfEvent.textContent=data._embedded.events[0]._embedded.attractions[0].name;
@@ -126,10 +128,10 @@ var displayEventInfo = function(data){
         nameOfEvent.appendChild(newEventInfoImage);
         };
 
-    //getDirections(data._embedded.events[0]._embedded.venues[0].name);
-    eventInfoEl.innerHTML="";
 
     //Display the events
+    eventInfoEl.innerHTML="";
+    
     for (x=0;x<data._embedded.events.length;x++){
         var newEventInfoEl = document.createElement("div");
         newEventInfoEl.setAttribute("class","row");
@@ -161,6 +163,7 @@ var displayEventInfo = function(data){
         var getDirectionsButton = document.createElement("a");
         getDirectionsButton.setAttribute("id",data._embedded.events[x]._embedded.venues[0].name);
 
+        //Save the venues address for address section
         var newVenueInfo = {
             name: data._embedded.events[x]._embedded.venues[0].name,
             address: data._embedded.events[x]._embedded.venues[0].address.line1,
@@ -197,9 +200,8 @@ var displayEventInfo = function(data){
     };
 };
 
+//fetch event info from ticketmaster
 var getEventInfo = function(eventName){
-
-    
 
     //search eventsInfo for this event
     for (x=0;x<eventsInfo.length;x++){
@@ -207,8 +209,6 @@ var getEventInfo = function(eventName){
             eventforDisplay=eventsInfo[x].attractionID;
         }
     }
-
-
     
     //Get the info for all events for this attraction ID, in this state, past this date
     date = globalDateInput+"T00:00:01Z";
@@ -222,7 +222,7 @@ var getEventInfo = function(eventName){
     });
 };
 
-
+//Make a list of buttons for all attractions available in this category and this state
 var displayEvents = function(data,activityType){
     //Reset list of events
     resultsCardEl.innerHTML="";
@@ -234,6 +234,7 @@ var displayEvents = function(data,activityType){
     //List of buttons already displayed
     var eventsDisplayed=[];
 
+    //For I'm feeling luck only display 1 event
     if (activityType==="miscellaneous"){
         var newEventButton=document.createElement("button");
         newEventButton.textContent=data[0].name;
@@ -291,6 +292,7 @@ var displayEvents = function(data,activityType){
     resultsCardEl.innerHTML=resultsCardEl.innerHTML+'</div>';
 };
 
+//fetch list of attractions available in this category and this state
 var getEventsList=function(activityType){
     date = globalDateInput+"T00:00:01Z";
     fetch(baseLink+"?startDateTime="+date+"&classificationName="+activityType+"&stateCode="+stateCode+"&apikey=T95dZRPqdgVYqRDHuXUKuK8DTaYIgRoR").then(function(response){
@@ -305,6 +307,7 @@ var getEventsList=function(activityType){
     });
 };
 
+//List the different activity categories
 var getActivities = function(){
     //Reset List of activities
     activityCardEl.innerHTML="";
@@ -333,6 +336,7 @@ var eventFormHandler = function(event){
     };
 };
 
+//Save the state 
 var dateFormHandler = function(event){
     event.preventDefault();
 
@@ -357,24 +361,23 @@ var dateFormHandler = function(event){
     getActivities();
 };
 
+//event listeners
+
 //When "Search" button is clicked
 dateFormEl.addEventListener("submit",dateFormHandler);
 
 //When one of the event types is clicked
 activityCardEl.addEventListener("click",eventFormHandler);
 
+
+//When one of the event buttons is clicked
 resultsCardEl.addEventListener("click",function(event){
     var targetEl = event.target;
     var eventName =targetEl.textContent;
     getEventInfo(eventName);
 });
 
-//When one of the events is clicked
-//$("#resultsCard").on("click","button",function(){
-    //var eventName=$(this).text();
-    //getEventInfo(eventName);
-//})
-
+//When get directions is clicked
 $('#eventInfo').on("click",".getDirections",function(){
     var venue =$(this)[0].attributes.id.nodeValue;
     getDirections(venue);
@@ -383,6 +386,8 @@ $('#eventInfo').on("click",".getDirections",function(){
 
 //MODAL STUFF
 
+
+//Gopher it modal
 var modalBtn = document.querySelector("#modalBtn");
 var modalBg = document.querySelector("#modalBG");
 var modalClose = document.querySelector("#modalClose");
@@ -395,6 +400,8 @@ modalClose.addEventListener("click",function(){
     modalBg.classList.remove("bg-active");
 });
 
+
+//connect modal
 var connectBtn = document.querySelector("#connectBtn");
 var connectBg = document.querySelector("#connectModalBG")
 var connectClose = document.querySelector("#connectClose");

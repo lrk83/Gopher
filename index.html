@@ -8,6 +8,7 @@
     <title>Gopher</title>
 </head>
 <body>
+    <!--Header-->
     <header>
         <div class="logo">
         <h1>
@@ -17,27 +18,32 @@
         <nav>
             <ul>
                 <li>
-                    <!-- Trigger/Open The Modal -->
+                    <!-- Trigger/Open The Gopher It Modal -->
                     <button id="modalBtn">Why Gopher It</button>
                 </li>
                 
                 <li>
+                    <!-- Trigger/Open The Connect Modal -->
                     <button id="connectBtn">Connect</button>
                 </li>
                 <li>
+                    <!-- Open pastSearches.html-->
                     <a href="pastSearches.html">Past Searches</a>
                 </li>
                 <li>
+                    <!-- Open signup.html-->
                     <a href="signup.html">Sign Up</a>
                 </li>
             </ul>
         </nav>
         
         </header>
-
+    
+    <!--Search Section-->
     <div class="container">
         <div class="row">
             <div class="column col-6">
+                <!--Enter state form-->
                 <div class="card searchCard" id="dateCard">
                     <div class="card-header"><h3>What Should I Do Today?</h3></div>
                     <div class="card-body">
@@ -50,15 +56,19 @@
                         </form>
                     </div>
                 </div>
+                <!--pick desired activity category-->
                 <div class="searchCard" id="activityCard">
                 </div>
             </div>
+            
             <div class="column col-6">
                 <div id="resultsCard">
 
                 </div>
             </div>
         </div>
+
+    <!--section for displaying all events for a given attraction-->
     </div>
         <div class="row" id="eventInfoSection">
             <div class="column col-12">
@@ -71,6 +81,7 @@
                 </div>
             </div>
     
+    <!--Get directions section (map and address)-->
     <div class="container noPhoto">
         <div class="card-header"><h2 id="goPherIt"></h2></div>
         <div class="row" id = "frameRow">
@@ -86,10 +97,10 @@
         </div>
     </div>
     
-    <!-- The Modal -->
+    <!-- The Modal Background-->
     <div id="modalBG" class="modal-bg">
 
-    <!-- Modal content -->
+    <!-- Gopher It Modal content -->
         <div class="modal-content first-modal">
             <div class="modal-header">
                 <div class="title"><h4>Why Gopher It</h4></div>
@@ -108,7 +119,7 @@
 
     </div>
 
-    <!--Second Modal-->
+    <!--Connect Modal Content-->
     <div id="connectModalBG" class="modal-bg">
         <div class="modal-content">
             <div class="modal-header">
