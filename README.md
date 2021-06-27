@@ -3,9 +3,9 @@
 
 ## Description
 
-Github Repository - https://github.com/lrk83/
+[Deployed Application](https://lrk83.github.io/Gopher)
 
-Deployed Application - https://lrk83.github.io/Gopher/
+[Github Repository](https://github.com/lrk83/Gopher)
 
 Gopher is a site that helps you and your friends make planning easier and find fun events all can agree on. With just a simple click you will have all events that are happening in your state and buy tickets. Gopher will save your time in finding what events are near by and will provide you the option to buy tickets as well as seeing the location to where the event will be located at. 
 Save your time and use Gopher! 
