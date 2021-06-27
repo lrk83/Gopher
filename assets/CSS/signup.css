@@ -16,7 +16,9 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     background-color: rgb(1, 30, 75);
 }
-/* apply styles to <header> */
+
+/* Header styles */
+
 header {
     background-color: var(--tertiary-color);
     padding: 10px 35px;
@@ -57,7 +59,7 @@ header a {
     color: rgb(1, 30, 75);
 }
 
-
+/*form styles*/
 .gopher{
     background-image: url(../images/social-event-2.jpg);
     height: 600px;
@@ -69,7 +71,6 @@ header a {
     justify-content: flex-end;
     flex-wrap: wrap;
  }
-/* Hero Style Ended */
 
 .gopher-form {
    background-color:rgb(48, 152, 160);
@@ -108,7 +109,6 @@ header a {
    color: #fce138;
 }
 
-
 .form-input {
    border: 1px solid #024e76;
    display: block;
@@ -125,7 +125,6 @@ header a {
    margin: 0 5px;
    color: black;
  }
-
 
 .gopher-form button {
     color: #a7a38b;

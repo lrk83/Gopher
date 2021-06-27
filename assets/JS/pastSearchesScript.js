@@ -1,30 +1,34 @@
-var savedEvents = [];
+//Variables for query Selectors
+var iframe = document.querySelector("#iframe");
 var pastSearchesBox = document.querySelector("#pastSearchesBox");
+var eventInfoEl =document.querySelector("#eventInfo");
+var adressFrame = document.querySelector("#adressFrame");
+var gopherIt = document.querySelector("#goPherIt");
+
+//Variables for passing btwn functions
+var savedEvents = [];
 var eventsInfo = [];
 var globalDateInput = moment().format("YYYY-MM-DD");
 var stateCode = "";
-var eventInfoEl =document.querySelector("#eventInfo");
 var venuesInfo = [];
-
-var iframe = document.querySelector("#iframe");
-var adressFrame = document.querySelector("#adressFrame");
-var gopherIt = document.querySelector("#goPherIt");
 
 //Varaibles for links
 var baseLink = "https://app.ticketmaster.com/discovery/v2/events.json";
 var apiKey = "&apikey=T95dZRPqdgVYqRDHuXUKuK8DTaYIgRoR";
 
-var getDirections = function(venue){
-    
-    //Check if venue includes & or ?
 
+//Get directions for a given venue
+var getDirections = function(venue){
     venueForLoop="";
     for (x=0;x<venuesInfo.length;x++){
+
+        //Get venues address for google maps
         if (venuesInfo[x].name===venue && venuesInfo[x].name!=venueForLoop){
             venueForLoop=venuesInfo[x].name;
 
             venueNameCompiled=venuesInfo[x].name+venuesInfo[x].address+venuesInfo[x].city+venuesInfo[x].state;
 
+            //Remove any ?s or &s from venue name
             venueNameEdited="";
             for (y=0;y<venueNameCompiled.length;y++){
                 if(venueNameCompiled[y]!="&" && venueNameCompiled[y]!="?"){
@@ -32,9 +36,7 @@ var getDirections = function(venue){
                 };
             };
 
-            console.log(venuesInfo[x].name);
-
-            //Get and format the venue name
+            //Remove any spaces from the venue name
             venueName="";
             venueNameEdited.split(" ").forEach((element) => {
                 venueName+=element;
@@ -52,6 +54,7 @@ var getDirections = function(venue){
             googleMapsIFrame.setAttribute("loading","lazy");
             iframe.appendChild(googleMapsIFrame);
 
+            //Make an address card for the venue
             adressFrame.innerHTML="";
 
             var newAdressRow1 = document.createElement("div");
@@ -91,10 +94,13 @@ var getDirections = function(venue){
     };
 };
 
+//Make the display events section for a given attraction
 var displayEventInfo = function(data){
+
     //Save artist/attraction name
     nameOfEvent.textContent=data._embedded.events[0]._embedded.attractions[0].name;
 
+    //This is for formatting the artist pictures
     if(window.matchMedia("screen and (max-width: 980px)").matches){
         var newEventInfoImage = document.createElement("img");
         newEventInfoImage.setAttribute("src",data._embedded.events[0].images[2].url);
@@ -136,6 +142,7 @@ var displayEventInfo = function(data){
         var getDirectionsButton = document.createElement("a");
         getDirectionsButton.setAttribute("id",data._embedded.events[x]._embedded.venues[0].name);
 
+        //Save the venue address for getDirections
         var newVenueInfo = {
             name: data._embedded.events[x]._embedded.venues[0].name,
             address: data._embedded.events[x]._embedded.venues[0].address.line1,
@@ -172,7 +179,7 @@ var displayEventInfo = function(data){
     };
 };
 
-
+//fetch event info from ticketmaster
 var getEventInfo = function(eventName){
     //search eventsInfo for this event
     for (x=0;x<eventsInfo.length;x++){
@@ -192,27 +199,25 @@ var getEventInfo = function(eventName){
     });
 };
 
+//Display all events for a given state and a given category
 var displayEvents = function(data){
-    console.log(data); 
-
     
-    
-    //Display it
+    //Display the event
     var newEventButton=document.createElement("button");
     newEventButton.textContent=data._embedded.events[0].name;
     newEventButton.setAttribute("class","btn");
     newEventButton.setAttribute("href","#eventInfoSection");
     pastSearchesBox.appendChild(newEventButton);
 
-    //Save its info to eventsInfo
+    //Save the events info to eventsInfo
     var eventInfo={
         name: data._embedded.events[0].name,
         attractionID: data._embedded.events[0]._embedded.attractions[0].id
     };
-
     eventsInfo.push(eventInfo);
 };
 
+//load events from local storage
 var loadEvents = function(){
     var savedEvents = localStorage.getItem("searchedEvents");
 
@@ -222,25 +227,26 @@ var loadEvents = function(){
     };
 
     savedEvents=JSON.parse(savedEvents);
-    console.log(savedEvents);
 
     stateCode= savedEvents[0]._embedded.events[0]._embedded.venues[0].state.stateCode;
-    console.log(stateCode);
 
+    //Display each event in local storage
     for(x=0;x<savedEvents.length;x++){
         displayEvents(savedEvents[x]);
     }; 
 };
 
+//Event listeners
 pastSearchesBox.addEventListener("click",function(event){
     var targetEl = event.target;
     var eventName =targetEl.textContent;
     getEventInfo(eventName);
 });
 
-loadEvents();
-
 $('#eventInfo').on("click",".getDirections",function(){
     var venue =$(this)[0].attributes.id.nodeValue;
     getDirections(venue);
 });
+
+//load events from local storage when page first loads
+loadEvents();
