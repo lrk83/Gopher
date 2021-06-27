@@ -50,7 +50,7 @@ Gopher also lets you sign up and receive emails from concerts happening in your 
 * Diana Olivas
 
 ## Website 
-https://lrk83.github.io/project-1/
+https://lrk83.github.io/Gopher/
 
 
 
